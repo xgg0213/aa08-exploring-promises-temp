@@ -77,11 +77,29 @@ function wait(ms) {
   }
 
 
-  phase5();
+//   phase5();
 /* ============================== Phase 6 ============================== */
 /* -------------------- exploring reject and .catch -------------------- */
 
 // Your code here 
+const tryRandomPromise = (random) => new Promise((resolve, reject) => {
+    if (random > 0.5) {
+        resolve('success!!!');
+    } else {
+        reject('random error');
+    }
+});
+
+// for (let i = 0; i < 10; i++) {
+//     let random = Math.random();
+    
+//     // wait(2000 + random * 1000) // why lin 96 and line 97 yields different results?
+//     wait(2000)
+
+//         .then(() => tryRandomPromise(random))
+//         .then((res) => console.log(res))
+//         .catch((err) => console.log(err))
+// }
 
 
 
@@ -90,9 +108,26 @@ function wait(ms) {
 
 // Your code here 
 
+const phase7 = async function(i) {
+    let random = Math.random();
+    await wait(5000 + random * 1000);
+    try {
+        const res = await tryRandomPromise(random);
+        console.log('random again #', i, res);
+    } catch (err) {
+        console.log('random again #', i, err);
+    }
+}
+
+for (let i = 0; i < 10; i++) {
+    phase7(i) ;     
+}
+// phase7(0)
+    
 
 
 /* ============================== Phase 8 ============================== */
 /* -------------------- Promises are asynchronous! --------------------- */
 
 // Your code here 
+console.log('END OF PROGRAM');
